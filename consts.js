@@ -120,7 +120,8 @@ exports.qtypeToName = function(t) {
 };
 
 var NAME_TO_QCLASS = exports.NAME_TO_QCLASS = {
-  IN: 1
+  IN: 1,
+  ETHERNET: 32769
 };
 exports.QCLASS_TO_NAME = reverse_map(NAME_TO_QCLASS);
 

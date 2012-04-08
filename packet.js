@@ -198,13 +198,15 @@ Packet.prototype.toString = function() {
   ret.push('');
 
   var pushit = function(p) {
-    ret.push(p.toString());
+    var s = p.toString()
+    ret.push(s);
   };
 
   if (this.question.length) {
     ret.push(';; QUESTION SECTION:');
     this.question.forEach(function(q) {
-      ret.push('; ' + q.toString());
+      var s = q.toString()
+      ret.push('; ' + s);
     });
     ret.push('');
   }
@@ -297,4 +299,87 @@ var EDNSPacket = exports.EDNSPacket = function(socket, rinfo) {
   this.udpSize = 4096;
   this.do = 1;
 };
+
+Packet.prototype.objectify = function() {
+
+  var o = {}
+
+  o.header = {}
+  var 
+  h = this.header
+  switch (h.opcode) {
+    case 0: o.header.opcode = 'QUERY'; break;
+    case 1: o.header.opcode = 'IQUERY'; break;
+    case 2: o.header.opcode = 'STATUS'; break;
+    default: o.header.opcode = 'UNKNOWN'; break;
+  }
+  o.header.status = consts.RCODE_TO_NAME[h.rcode]
+  o.header.id = h.id
+  o.header.flags = {}
+  
+  if (h.qr) o.header.flags.qr = true
+  if (h.rd) o.header.flags.rd = true
+  if (h.aa) o.header.flags.aa = true
+  if (h.tc) o.header.flags.tc = true
+  if (h.ra) o.header.flags.ra = true
+
+  o.header.count = 
+    { question:  h.qdcount
+    , answer: h.ancount
+    , authority: h.nscount
+    , additional: h.arcount
+  }
+  
+  if (this.question.length) {
+    o.question = []
+    this.question.forEach(function(q) {
+      var qo =
+        { name: q.name
+        , 'class': consts.QCLASS_TO_NAME[q['class']] || q['class']
+        , type: consts.QTYPE_TO_NAME[q.type]
+        }
+      o.question.push(qo)
+    });
+  }
+
+  var parse = function (a) {
+    var reverse =  a.name.split('.')
+    reverse.reverse()
+    var item =
+      { name: a.name
+      , reverse: reverse
+      , ttl: a.ttl
+      , 'class': consts.QCLASS_TO_NAME[a['class']] || a['class']
+      , type: consts.QTYPE_TO_NAME[a.type]
+      }
+    return item
+  }
+  
+  if (this.answer.length) {
+    o.answer = []
+    this.answer.forEach(function(a) {
+      o.answer.push(parse(a))
+    });
+  }
+
+  if (this.authority.length) {
+    o.authority = []
+    this.authority.forEach(function(a) {
+      o.authority.push(parse(a))
+    });
+  }
+
+  if (this.additional.length) {
+    if (this.additional[0].type !== consts.NAME_TO_QTYPE.OPT) {
+      o.additional = []
+      this.additional.forEach(function(a) {
+        o.additional.push(parse(a))
+      });
+    }
+  }
+
+  return o;
+};
+
+
 util.inherits(EDNSPacket, Packet);

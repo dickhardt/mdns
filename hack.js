@@ -7,10 +7,11 @@ var mdns = dgram.createSocket("udp4");
 
 mdns.on("message", function (msg, rinfo) {
   console.log("received from: " + rinfo.address + ":" + rinfo.port);
-  console.log(hexy.hexy(msg))
+ // console.log(hexy.hexy(msg))
   var request = new Packet(mdns)
   request.unpack(msg);
-   console.log(request.toString())
+//  console.log(request.toString())
+  console.log(request.objectify())
   
 });
 
@@ -28,7 +29,7 @@ mdns.bind(5353,'224.0.0.251');
 mdns.setBroadcast(true)
 mdns.addMembership('224.0.0.251')
 
-////////////
+/*
 
 var dns = require('../dns'),
   util = require('util');
@@ -50,3 +51,4 @@ response.answer.push(dns.A({
   ttl: 600,
 }));
 
+*/
