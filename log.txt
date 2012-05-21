@@ -1,0 +1,113 @@
+mdns listening 224.0.0.251:5353
+received from: 10.0.0.91:5353
+{ header: 
+   { opcode: 'QUERY',
+     status: 'NOERROR',
+     id: 0,
+     flags: {},
+     count: { question: 1, answer: 0, authority: 0, additional: 0 } },
+  question: [ { name: 'mini.local', class: 'IN', type: 'A' } ] }
+received from: 10.0.0.5:5353
+{ header: 
+   { opcode: 'QUERY',
+     status: 'NOERROR',
+     id: 0,
+     flags: { qr: true, aa: true },
+     count: { question: 0, answer: 1, authority: 0, additional: 2 } },
+  answer: 
+   [ { name: 'mini.local',
+       reverse: [Object],
+       ttl: 120,
+       class: 'ETHERNET',
+       type: 'A' } ],
+  additional: 
+   [ { name: 'mini.local',
+       reverse: [Object],
+       ttl: 120,
+       class: 'ETHERNET',
+       type: 'AAAA' },
+     { name: 'mini.local',
+       reverse: [Object],
+       ttl: 120,
+       class: 'ETHERNET',
+       type: 'NSEC' } ] }
+received from: 10.0.0.91:5353
+{ header: 
+   { opcode: 'QUERY',
+     status: 'NOERROR',
+     id: 0,
+     flags: {},
+     count: { question: 1, answer: 0, authority: 0, additional: 0 } },
+  question: [ { name: 'macpro.local', class: 'IN', type: 'A' } ] }
+received from: 10.0.0.4:5353
+{ header: 
+   { opcode: 'QUERY',
+     status: 'NOERROR',
+     id: 0,
+     flags: { qr: true, aa: true },
+     count: { question: 0, answer: 1, authority: 0, additional: 2 } },
+  answer: 
+   [ { name: 'MacPro.local',
+       reverse: [Object],
+       ttl: 120,
+       class: 'ETHERNET',
+       type: 'A' } ],
+  additional: 
+   [ { name: 'MacPro.local',
+       reverse: [Object],
+       ttl: 120,
+       class: 'ETHERNET',
+       type: 'AAAA' },
+     { name: 'MacPro.local',
+       reverse: [Object],
+       ttl: 120,
+       class: 'ETHERNET',
+       type: 'NSEC' } ] }
+received from: 10.0.0.91:5353
+{ header: 
+   { opcode: 'QUERY',
+     status: 'NOERROR',
+     id: 0,
+     flags: {},
+     count: { question: 1, answer: 0, authority: 0, additional: 0 } },
+  question: [ { name: 'frankie.local', class: 'IN', type: 'A' } ] }
+received from: 10.0.0.91:5353
+{ header: 
+   { opcode: 'QUERY',
+     status: 'NOERROR',
+     id: 0,
+     flags: {},
+     count: { question: 1, answer: 0, authority: 0, additional: 0 } },
+  question: [ { name: 'frankie.local', class: 'IN', type: 'A' } ] }
+received from: 10.0.0.91:5353
+{ header: 
+   { opcode: 'QUERY',
+     status: 'NOERROR',
+     id: 0,
+     flags: {},
+     count: { question: 1, answer: 0, authority: 0, additional: 0 } },
+  question: [ { name: 'frankie-2.local', class: 'IN', type: 'A' } ] }
+received from: 10.0.0.96:5353
+{ header: 
+   { opcode: 'QUERY',
+     status: 'NOERROR',
+     id: 0,
+     flags: { qr: true, aa: true },
+     count: { question: 0, answer: 1, authority: 0, additional: 2 } },
+  answer: 
+   [ { name: 'frankie-2.local',
+       reverse: [Object],
+       ttl: 120,
+       class: 'ETHERNET',
+       type: 'A' } ],
+  additional: 
+   [ { name: 'frankie-2.local',
+       reverse: [Object],
+       ttl: 120,
+       class: 'ETHERNET',
+       type: 'AAAA' },
+     { name: 'frankie-2.local',
+       reverse: [Object],
+       ttl: 120,
+       class: 'ETHERNET',
+       type: 'NSEC' } ] }
